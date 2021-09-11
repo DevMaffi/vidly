@@ -6,8 +6,6 @@ export class Movies extends Component {
   state = { movies: getMovies() };
 
   render() {
-    const { movies } = this.state;
-
     return (
       <table className="table">
         <thead>
@@ -20,7 +18,7 @@ export class Movies extends Component {
           </tr>
         </thead>
         <tbody>
-          {movies.map(movie => (
+          {this.state.movies.map(movie => (
             <tr key={movie._id}>
               <td>{movie.title}</td>
               <td>{movie.genre.name}</td>
