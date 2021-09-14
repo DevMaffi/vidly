@@ -5,16 +5,26 @@ import { getMovies } from '../services/fakeMovieService';
 export class Movies extends Component {
   state = { movies: getMovies() };
 
-  render() {
-    const { length: count } = this.state.movies;
+  // handlers
 
-    if (count === 0) {
+  handleDelete = movie => {
+    const movies = this.state.movies.filter(m => m._id !== movie._id);
+    this.setState({ movies });
+  };
+
+  render() {
+    const { movies } = this.state;
+
+    if (movies.length === 0) {
       return <p>There are no movies in database</p>;
     }
 
     return (
       <>
-        <p>Showing {count > 1 ? `${count} movies` : '1 movie'} in database</p>
+        <p>
+          Showing {movies.length > 1 ? `${movies.length} movies` : '1 movie'} in
+          database
+        </p>
 
         <table className="table">
           <thead>
@@ -27,7 +37,7 @@ export class Movies extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.movies.map(movie => (
+            {movies.map(movie => (
               <tr key={movie._id}>
                 <td>{movie.title}</td>
                 <td>{movie.genre.name}</td>
@@ -48,13 +58,6 @@ export class Movies extends Component {
       </>
     );
   }
-
-  // handlers
-
-  handleDelete = movie => {
-    const movies = this.state.movies.filter(m => m._id !== movie._id);
-    this.setState({ movies });
-  };
 }
 
 export default Movies;
