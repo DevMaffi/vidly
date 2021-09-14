@@ -8,6 +8,7 @@ import { getMovies } from '../services/fakeMovieService';
 export class Movies extends Component {
   state = {
     movies: getMovies(),
+    currentPage: 1,
     pageSize: 4,
   };
 
@@ -27,19 +28,21 @@ export class Movies extends Component {
     this.setState({ movies });
   };
 
-  render() {
-    const { movies, pageSize } = this.state;
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
 
-    if (movies.length === 0) {
+  render() {
+    const { movies, currentPage, pageSize } = this.state;
+    const { length: count } = movies;
+
+    if (count === 0) {
       return <p>There are no movies in database</p>;
     }
 
     return (
       <>
-        <p>
-          Showing {movies.length > 1 ? `${movies.length} movies` : '1 movie'} in
-          database
-        </p>
+        <p>Showing {count > 1 ? `${count} movies` : '1 movie'} in database</p>
 
         <table className="table">
           <thead>
@@ -77,7 +80,12 @@ export class Movies extends Component {
             ))}
           </tbody>
         </table>
-        <Pagination itemsCount={movies.length} pageSize={pageSize} />
+        <Pagination
+          itemsCount={count}
+          currentPage={currentPage}
+          onPageChange={this.handlePageChange}
+          pageSize={pageSize}
+        />
       </>
     );
   }
