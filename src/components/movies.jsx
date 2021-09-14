@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
 import Like from './common/like';
+import Pagination from './common/pagination';
 
 import { getMovies } from '../services/fakeMovieService';
 
 export class Movies extends Component {
-  state = { movies: getMovies() };
+  state = {
+    movies: getMovies(),
+    pageSize: 4,
+  };
 
   // handlers
 
@@ -24,7 +28,7 @@ export class Movies extends Component {
   };
 
   render() {
-    const { movies } = this.state;
+    const { movies, pageSize } = this.state;
 
     if (movies.length === 0) {
       return <p>There are no movies in database</p>;
@@ -73,6 +77,7 @@ export class Movies extends Component {
             ))}
           </tbody>
         </table>
+        <Pagination itemsCount={movies.length} pageSize={pageSize} />
       </>
     );
   }
