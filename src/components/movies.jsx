@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Like from './common/like';
 import Pagination from './common/pagination';
 
+import { paginate } from '../utils/paginate';
 import { getMovies } from '../services/fakeMovieService';
 
 export class Movies extends Component {
@@ -33,12 +34,14 @@ export class Movies extends Component {
   };
 
   render() {
-    const { movies, currentPage, pageSize } = this.state;
-    const { length: count } = movies;
+    const { movies: allMovies, currentPage, pageSize } = this.state;
+    const { length: count } = allMovies;
 
     if (count === 0) {
       return <p>There are no movies in database</p>;
     }
+
+    const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
       <>
@@ -80,6 +83,7 @@ export class Movies extends Component {
             ))}
           </tbody>
         </table>
+
         <Pagination
           itemsCount={count}
           currentPage={currentPage}
