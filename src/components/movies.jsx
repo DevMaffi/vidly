@@ -42,7 +42,7 @@ export class Movies extends Component {
   };
 
   handleItemSelect = genre => {
-    console.log(genre);
+    this.setState({ selectedGenre: genre });
   };
 
   handlePageChange = page => {
@@ -50,7 +50,13 @@ export class Movies extends Component {
   };
 
   render() {
-    const { movies: allMovies, genres, currentPage, pageSize } = this.state;
+    const {
+      movies: allMovies,
+      genres,
+      selectedGenre,
+      currentPage,
+      pageSize,
+    } = this.state;
     const { length: count } = allMovies;
 
     if (count === 0) {
@@ -62,7 +68,11 @@ export class Movies extends Component {
     return (
       <div className="row">
         <div className="col-2">
-          <ListGroup items={genres} onItemSelect={this.handleItemSelect} />
+          <ListGroup
+            items={genres}
+            selectedItem={selectedGenre}
+            onItemSelect={this.handleItemSelect}
+          />
         </div>
         <div className="col">
           <p>Showing {count > 1 ? `${count} movies` : '1 movie'} in database</p>
