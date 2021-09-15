@@ -62,12 +62,7 @@ export class Movies extends Component {
     return (
       <div className="row">
         <div className="col-2">
-          <ListGroup
-            items={genres}
-            valueProp="_id"
-            textProp="name"
-            onItemSelect={this.handleItemSelect}
-          />
+          <ListGroup items={genres} onItemSelect={this.handleItemSelect} />
         </div>
         <div className="col">
           <p>Showing {count > 1 ? `${count} movies` : '1 movie'} in database</p>

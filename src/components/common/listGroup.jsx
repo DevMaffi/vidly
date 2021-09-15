@@ -14,4 +14,9 @@ function ListGroup(props) {
   );
 }
 
+ListGroup.defaultProps = {
+  valueProp: '_id',
+  textProp: 'name',
+};
+
 export default ListGroup;
