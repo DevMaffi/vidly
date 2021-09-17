@@ -19,9 +19,11 @@ export class Movies extends Component {
   // lifecycle
 
   componentDidMount() {
+    const genres = [{ name: 'All Genres' }, ...getGenres()];
+
     this.setState({
       movies: getMovies(),
-      genres: getGenres(),
+      genres,
     });
   }
 
@@ -41,8 +43,8 @@ export class Movies extends Component {
     this.setState({ movies });
   };
 
-  handleItemSelect = genre => {
-    this.setState({ selectedGenre: genre });
+  handleGenreSelect = genre => {
+    this.setState({ currentPage: 1, selectedGenre: genre });
   };
 
   handlePageChange = page => {
@@ -63,7 +65,7 @@ export class Movies extends Component {
       return <p>There are no movies in database</p>;
     }
 
-    const filtered = selectedGenre
+    const filtered = selectedGenre?._id
       ? allMovies.filter(m => m.genre._id === selectedGenre._id)
       : allMovies;
 
@@ -75,7 +77,7 @@ export class Movies extends Component {
           <ListGroup
             items={genres}
             selectedItem={selectedGenre}
-            onItemSelect={this.handleItemSelect}
+            onItemSelect={this.handleGenreSelect}
           />
         </div>
         <div className="col">
