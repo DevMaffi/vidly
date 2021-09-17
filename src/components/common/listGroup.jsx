@@ -7,6 +7,7 @@ function ListGroup(props) {
     <ul className="list-group">
       {items.map(item => (
         <li
+          style={{ cursor: 'pointer' }}
           onClick={() => onItemSelect(item)}
           key={item[textProp]}
           className={
