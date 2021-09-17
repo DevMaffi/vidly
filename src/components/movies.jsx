@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Table from './table';
+import MoviesTable from './moviesTable';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
 
@@ -87,7 +87,7 @@ export class Movies extends Component {
             database
           </p>
 
-          <Table
+          <MoviesTable
             movies={movies}
             onLikeToggle={this.handleLike}
             onDelete={this.handleDelete}

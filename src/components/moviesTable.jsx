@@ -2,7 +2,7 @@ import React from 'react';
 
 import Like from './common/like';
 
-function Table(props) {
+function MoviesTable(props) {
   const { movies, onLikeToggle, onDelete } = props;
 
   return (
@@ -45,4 +45,4 @@ function Table(props) {
   );
 }
 
-export default Table;
+export default MoviesTable;
