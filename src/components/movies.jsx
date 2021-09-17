@@ -51,6 +51,10 @@ export class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
+  handleSort = column => {
+    console.log(column);
+  };
+
   render() {
     const {
       movies: allMovies,
@@ -91,6 +95,7 @@ export class Movies extends Component {
             movies={movies}
             onLikeToggle={this.handleLike}
             onDelete={this.handleDelete}
+            onSort={this.handleSort}
           />
 
           <Pagination
