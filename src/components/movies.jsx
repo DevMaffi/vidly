@@ -63,7 +63,11 @@ export class Movies extends Component {
       return <p>There are no movies in database</p>;
     }
 
-    const movies = paginate(allMovies, currentPage, pageSize);
+    const filtered = selectedGenre
+      ? allMovies.filter(m => m.genre._id === selectedGenre._id)
+      : allMovies;
+
+    const movies = paginate(filtered, currentPage, pageSize);
 
     return (
       <div className="row">
@@ -75,7 +79,11 @@ export class Movies extends Component {
           />
         </div>
         <div className="col">
-          <p>Showing {count > 1 ? `${count} movies` : '1 movie'} in database</p>
+          <p>
+            Showing{' '}
+            {filtered.length > 1 ? `${filtered.length} movies` : '1 movie'} in
+            database
+          </p>
 
           <Table
             movies={movies}
@@ -84,7 +92,7 @@ export class Movies extends Component {
           />
 
           <Pagination
-            itemsCount={count}
+            itemsCount={filtered.length}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
             pageSize={pageSize}
