@@ -7,11 +7,12 @@ function ListGroup(props) {
     <ul className="list-group">
       {items.map(item => (
         <li
-          style={{ cursor: 'pointer' }}
           onClick={() => onItemSelect(item)}
           key={item[textProp]}
           className={
-            selectedItem === item ? 'list-group-item active' : 'list-group-item'
+            selectedItem === item
+              ? 'clickable list-group-item active'
+              : 'clickable list-group-item'
           }
         >
           {item[textProp]}

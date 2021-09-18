@@ -29,8 +29,8 @@ export class TableHeader extends Component {
           {this.props.columns.map(column => (
             <th
               key={column.path || column.key}
-              style={{ cursor: 'pointer' }}
               onClick={() => this.raiseSort(column.path)}
+              className="clickable"
             >
               {column.label} {this.renderSortIcon(column)}
             </th>
