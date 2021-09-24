@@ -16,11 +16,15 @@ export class LoginForm extends Component {
 
   handleChange = e => {
     const account = { ...this.state.account };
-    account.username = e.currentTarget.value;
+    const { currentTarget: input } = e;
+    account[input.name] = input.value;
+
     this.setState({ account });
   };
 
   render() {
+    const { account } = this.state;
+
     return (
       <div>
         <h1>Login</h1>
@@ -32,7 +36,8 @@ export class LoginForm extends Component {
             <input
               autoFocus
               onChange={this.handleChange}
-              value={this.state.account.username}
+              value={account.username}
+              name="username"
               className="form-control"
               id="username"
               type="text"
@@ -42,7 +47,14 @@ export class LoginForm extends Component {
             <label className="clickable" htmlFor="password">
               Password
             </label>
-            <input id="password" type="text" className="form-control" />
+            <input
+              onChange={this.handleChange}
+              value={account.password}
+              name="password"
+              className="form-control"
+              id="password"
+              type="text"
+            />
           </div>
           <button className="btn btn-primary">Login</button>
         </form>
