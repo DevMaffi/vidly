@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 export class LoginForm extends Component {
+  username = React.createRef();
+
+  componentDidMount() {
+    this.username.current.focus();
+  }
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -16,7 +22,12 @@ export class LoginForm extends Component {
             <label className="clickable" htmlFor="username">
               Username
             </label>
-            <input id="username" type="text" className="form-control" />
+            <input
+              ref={this.username}
+              id="username"
+              type="text"
+              className="form-control"
+            />
           </div>
           <div className="form-group">
             <label className="clickable" htmlFor="password">
