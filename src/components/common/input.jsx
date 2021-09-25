@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Input(props) {
-  const { autoFocus, name, label, value, onChange } = props;
+  const { autoFocus, name, label, value, error, onChange } = props;
 
   return (
     <div className="form-group">
@@ -17,6 +17,7 @@ function Input(props) {
         id={name}
         type="text"
       />
+      {error && <div className="alert alert-danger">{error}</div>}
     </div>
   );
 }
