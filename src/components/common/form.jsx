@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import Joi from 'joi-browser';
 
+import Input from './input';
+
 export class Form extends Component {
   state = {
     data: {},
@@ -55,6 +57,36 @@ export class Form extends Component {
     data[input.name] = input.value;
 
     this.setState({ data, errors });
+  };
+
+  renderInput = (name, label, autoFocus, type) => {
+    autoFocus = autoFocus ?? false;
+    type = type ?? 'text';
+
+    const { data, errors } = this.state;
+
+    return (
+      <Input
+        autoFocus={autoFocus}
+        type={type}
+        name={name}
+        value={data[name]}
+        label={label}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  };
+
+  renderButton = label => {
+    return (
+      <button
+        disabled={Object.keys(this.validate()).length}
+        className="btn btn-primary"
+      >
+        {label}
+      </button>
+    );
   };
 }
 
