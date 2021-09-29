@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
 import MoviesTable from './moviesTable';
@@ -108,6 +109,14 @@ export class Movies extends Component {
             Showing {totalCount > 1 ? `${totalCount} movies` : '1 movie'} in
             database
           </p>
+
+          <Link
+            to="/movies/new"
+            className="btn btn-primary"
+            style={{ marginBottom: 20 }}
+          >
+            New Movie
+          </Link>
 
           <MoviesTable
             movies={movies}
