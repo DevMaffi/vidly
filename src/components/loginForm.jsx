@@ -38,7 +38,7 @@ export class LoginForm extends Component {
     const errors = this.validate();
     this.setState({ errors });
 
-    if (errors) return;
+    if (Object.keys(errors).length) return;
 
     console.log('Submitted');
   };
@@ -89,7 +89,12 @@ export class LoginForm extends Component {
             onChange={this.handleChange}
             error={errors.password}
           />
-          <button className="btn btn-primary">Login</button>
+          <button
+            disabled={Object.keys(this.validate()).length}
+            className="btn btn-primary"
+          >
+            Login
+          </button>
         </form>
       </div>
     );
