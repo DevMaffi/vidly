@@ -9,7 +9,7 @@ import Pagination from './common/pagination';
 
 import { paginate } from '../utils/paginate';
 import { getMovies } from '../services/fakeMovieService';
-import { getGenres } from '../services/fakeGenreService';
+import { getGenres } from '../services/genreService';
 
 export class Movies extends Component {
   state = {
@@ -27,8 +27,11 @@ export class Movies extends Component {
 
   // lifecycle
 
-  componentDidMount() {
-    const genres = [{ name: 'All Genres' }, ...getGenres()];
+  async componentDidMount() {
+    const { data } = await getGenres();
+    const genres = [{ name: 'All Genres' }, ...data];
+
+    console.log(genres);
 
     this.setState({
       movies: getMovies(),
