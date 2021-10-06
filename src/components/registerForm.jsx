@@ -3,6 +3,8 @@ import Joi from 'joi-browser';
 
 import Form from './common/form';
 
+import * as userService from '../services/userService';
+
 export class RegisterForm extends Form {
   state = {
     data: {
@@ -19,8 +21,8 @@ export class RegisterForm extends Form {
     name: Joi.string().required().label('Name'),
   };
 
-  doSubmit = () => {
-    console.log('Submitted');
+  doSubmit = async () => {
+    await userService.register(this.state.data);
   };
 
   render() {
