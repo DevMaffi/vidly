@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode';
 
 import NavBar from './components/navBar';
 import LoginForm from './components/loginForm';
+import Logout from './components/logout';
 import RegisterForm from './components/registerForm';
 import Movies from './components/movies';
 import MovieForm from './components/movieForm';
@@ -34,6 +35,7 @@ export class App extends Component {
         <main className="container">
           <Switch>
             <Route path="/login" component={LoginForm}></Route>
+            <Route path="/logout" component={Logout}></Route>
             <Route path="/register" component={RegisterForm}></Route>
             <Route path="/movies/:id" component={MovieForm}></Route>
             <Route path="/movies" component={Movies}></Route>
