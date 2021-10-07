@@ -3,7 +3,7 @@ import Joi from 'joi-browser';
 
 import Form from './common/form';
 
-import { login } from '../services/authService';
+import auth from '../services/authService';
 export class LoginForm extends Form {
   state = {
     data: {
@@ -21,8 +21,7 @@ export class LoginForm extends Form {
   doSubmit = async () => {
     try {
       const { username, password } = this.state.data;
-      const { data: jwt } = await login(username, password);
-      localStorage.setItem('token', jwt);
+      await auth.login(username, password);
 
       window.location = '/';
     } catch (ex) {
