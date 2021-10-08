@@ -3,7 +3,18 @@ import { Link } from 'react-router-dom';
 
 import Table from './common/table';
 import Like from './common/like';
+
+import auth from '../services/authService';
+
 export class MoviesTable extends Component {
+  constructor() {
+    super();
+
+    const user = auth.getCurrentUser();
+
+    if (user?.isAdmin) this.columns.push(this.deleteColumn);
+  }
+
   columns = [
     {
       key: 'title',
@@ -23,18 +34,19 @@ export class MoviesTable extends Component {
         />
       ),
     },
-    {
-      key: 'delete',
-      content: movie => (
-        <button
-          onClick={() => this.props.onDelete(movie)}
-          className="btn btn-danger btn-sm"
-        >
-          Delete
-        </button>
-      ),
-    },
   ];
+
+  deleteColumn = {
+    key: 'delete',
+    content: movie => (
+      <button
+        onClick={() => this.props.onDelete(movie)}
+        className="btn btn-danger btn-sm"
+      >
+        Delete
+      </button>
+    ),
+  };
 
   render() {
     const { movies, onSort, sortColumn } = this.props;
