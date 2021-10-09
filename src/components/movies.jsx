@@ -111,7 +111,6 @@ export class Movies extends Component {
   };
 
   render() {
-    const { length: count } = this.state.movies;
     const {
       genres,
       searchQuery,
@@ -144,10 +143,7 @@ export class Movies extends Component {
             </Link>
           )}
 
-          <p>
-            Showing {totalCount > 1 ? `${totalCount} movies` : '1 movie'} in
-            database
-          </p>
+          <p>Showing {`${totalCount} movies`} in database</p>
 
           <SearchBox value={searchQuery} onSearch={this.handleSearch} />
 
