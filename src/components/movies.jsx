@@ -122,10 +122,6 @@ export class Movies extends Component {
     } = this.state;
     const { user } = this.props;
 
-    if (count === 0) {
-      return <p>There are no movies in database</p>;
-    }
-
     const { totalCount, data: movies } = this.getPagedData();
 
     return (
